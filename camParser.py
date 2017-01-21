@@ -2,13 +2,13 @@
 --------------------------------------------------------------------------------
 Descriptive Name     : camParser.py
 Author               : Vikrant Satheesh Kumar
-Contact Info         :
-Date Written         :
-Description          : (eg. Parse cameras on the Atlanta, Georgia traffic camera website)
-Command to run script: (eg. python <filename>)
-Usage                : (extra requirements to run the script: eg. have to be run within dev server)
-Input file format    : (eg. url#description (on each line))
-Output               : (eg. <file name> or <on screen>)
+Contact Info         : vsathees@purdue.edu
+Date Written         : 1/21/2017
+Description          : Parse data on NYC dot website
+Command to run script: python camParser.py
+Usage                : N/A
+Input file format    : N/A
+Output               : N/A
 Note                 :
 Other files required by : N/A
 this script and where
@@ -38,7 +38,7 @@ def nycdot():
     if platform.system() == 'Windows':
         PHANTOMJS_PATH = './phantomjs.exe'
     else:
-        PHANTOMJS_PATH = './phantomjs'
+        PHANTOMJS_PATH = '/usr/local/bin/phantomjs'
 
     browser = webdriver.PhantomJS(PHANTOMJS_PATH)
 
@@ -67,6 +67,13 @@ def nycdot():
         soup = BeautifulSoup(browser.page_source)
 
         snapshot_url = soup.find('img').get('src')
+
+
+        # Checking if the camera is inactive.
+        if re.search (r'img/inactive', snapshot_url) == None:
+            snapshot_url = re.search(r'(?P<URL>[\w\.\/:\\]*)', snapshot_url).group('URL')
+            f.write (content+"#"+str(snapshot_url)+"#"+latitude+"#"+longitude+"#"+"USA#NY#New York\n")
+
         print (snapshot_url)
         pass
 
