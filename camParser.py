@@ -22,3 +22,4 @@ Date added to Database :
 """
 
 if __name__ == '__main__':
+    print ("Getting started")
