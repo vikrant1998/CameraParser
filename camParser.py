@@ -1,7 +1,7 @@
-""" ****add / remove fields where appropriate, delete this line when done****
+"""
 --------------------------------------------------------------------------------
-Descriptive Name     : <filename>
-Author               :
+Descriptive Name     : camParser.py
+Author               : Vikrant Satheesh Kumar
 Contact Info         :
 Date Written         :
 Description          : (eg. Parse cameras on the Atlanta, Georgia traffic camera website)
@@ -27,6 +27,27 @@ import sys
 import time
 import json
 
+def nycdot():
+    print ("NYC dot")
+
+    JSonURL = "http://dotsignals.org/new-data.php" # JSON File containing MAP data.
+    CameraPopupURL = "http://dotsignals.org/google_popup.php?cid=" # Camera URL access.
+
+    f = open ('nycdot_list', 'w') # Write to an output file.
+
+    #Header Info
+    
+
+    #load JSON file into the response to parse.
+    response = urllib2.urlopen(JSonURL).read()
+
+    #Parse the given response.
+    parsed_json = json.loads(response)
+
+
+
+    return
 
 if __name__ == '__main__':
     print ("Getting started")
+    nycdot()
