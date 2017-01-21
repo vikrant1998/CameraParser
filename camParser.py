@@ -20,6 +20,13 @@ In database (Y/N)    :
 Date added to Database :
 --------------------------------------------------------------------------------
 """
+from bs4 import BeautifulSoup
+import urllib2
+import re
+import sys
+import time
+import json
+
 
 if __name__ == '__main__':
     print ("Getting started")
