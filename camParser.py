@@ -10,14 +10,14 @@ Usage                : N/A
 Input file format    : N/A
 Output               : N/A
 Note                 :
-Other files required by : N/A
+Other files required by : This code requires PhantomJS, a headless web browser.
 this script and where
 located
 
 ----For Parsing Scripts---------------------------------------------------------
-Website Parsed       : <insert url>
-In database (Y/N)    :
-Date added to Database :
+Website Parsed       : www.dotsignals.org
+In database (Y/N)    : Y
+Date added to Database : N/A
 --------------------------------------------------------------------------------
 """
 from bs4 import BeautifulSoup
@@ -42,6 +42,7 @@ def nycdot():
 
     browser = webdriver.PhantomJS(PHANTOMJS_PATH)
 
+    # Create a file to store the camera info.
     f = open ('nycdot_list', 'w') # Write to an output file.
 
     #Header Info
@@ -66,8 +67,8 @@ def nycdot():
         browser.get(url)
         soup = BeautifulSoup(browser.page_source)
 
+        # Finding the image tags using BeautifulSoup
         snapshot_url = soup.find('img').get('src')
-
 
         # Checking if the camera is inactive.
         if re.search (r'img/inactive', snapshot_url) == None:
